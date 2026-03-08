@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeRush | Typing Speed Test</title>
+  <meta name="description" content="Test your typing speed, accuracy, and words per minute in real time.">
+  <meta name="keywords" content="typing speed test,wpm test,typing accuracy">
+  <meta name="author" content="Tran Thien Thanh">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TypeRush - Typing Speed Test">
+  <meta property="og:description" content="Test your typing speed, accuracy, and words per minute in real time.">
+  <meta property="og:url" content="https://typerush.web.app">
+  <meta property="og:image" content="https://typerush.web.app/favicon.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TypeRush - Typing Speed Test">
+  <meta name="twitter:description" content="Test your typing speed, accuracy, and words per minute in real time.">
+  <link rel="canonical" href="https://typerush.web.app/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #132238;
+  --muted: #5b6b80;
+  --brand: #0d6efd;
+  --line: #dce3ed;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, #dde9ff 0%, transparent 35%),
+    radial-gradient(circle at bottom left, #d9f5ea 0%, transparent 30%),
+    var(--bg);
+}
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+header {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 14px 32px rgba(19, 34, 56, 0.08);
+}
+h1 { margin: 0 0 8px; font-size: 2rem; }
+.sub { margin: 0; color: var(--muted); }
+main {
+  margin-top: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 14px 32px rgba(19, 34, 56, 0.08);
+}
+.grid { display: grid; gap: 12px; }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+label { display: block; font-weight: 600; margin-bottom: 4px; }
+input, select, textarea, button {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+}
+textarea { min-height: 130px; resize: vertical; }
+button {
+  background: linear-gradient(130deg, #0d6efd, #1ba19b);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { opacity: 0.92; }
+.output, .panel {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fbfdff;
+}
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.swatch {
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
+}
+.swatch div { height: 68px; }
+.swatch code { display: block; text-align: center; padding: 8px; background: #fff; }
+canvas, img.preview {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.site-footer {
+  margin-top: 20px;
+  background: #0d1e33;
+  color: #dfe9f8;
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.site-footer h3 { margin: 0 0 8px; color: #fff; }
+.site-footer p { margin: 5px 0; word-break: break-word; }
+.site-footer a { color: #8cc7ff; }
+.note { color: var(--muted); font-size: .95rem; }
+</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TypeRush","description":"Test your typing speed, accuracy, and words per minute in real time.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","url":"https://typerush.web.app"}</script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Typing Speed Test</h1>
+      <p class="sub">Test your typing speed, accuracy, and words per minute in real time.</p>
+    </header>
+    <main>
+      <div class="panel" id="prompt"></div>
+    <label style="margin-top:10px">Type here</label><textarea id="inputTxt"></textarea>
+    <div class="grid two" style="margin-top:10px"><button id="start">Start 60s Test</button><div class="output"><strong id="timer">60</strong> sec left</div></div>
+    <div id="score" class="output" style="margin-top:10px"></div>
+    </main>
+    
+<footer class="site-footer">
+  <div>
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:tranthienthanh93@gmail.com">tranthienthanh93@gmail.com</a></p>
+    <p>Web: <a href="https://carrotstore.web.app" target="_blank" rel="noopener">carrotstore.web.app</a></p>
+    <p>Phone: <a href="tel:+84978651577">+84978651577</a></p>
+    <p>Tiktok: <a href="https://www.tiktok.com/@kurotsmilethanh" target="_blank" rel="noopener">@kurotsmilethanh</a></p>
+  </div>
+  <div>
+    <h3>Donation</h3>
+    <p>PayPal: <a href="https://www.paypal.com/paypalme/kurotsmile" target="_blank" rel="noopener">https://www.paypal.com/paypalme/kurotsmile</a></p>
+    <p>Buy us a Coffee on Ko-fi: <a href="https://ko-fi.com/T6T210E258" target="_blank" rel="noopener">https://ko-fi.com/T6T210E258</a></p>
+  </div>
+</footer>
+  </div>
+  <script>const samples=['Fast typing is a practical skill for daily productivity.','Design and code quality both matter when shipping web tools.','Small consistent practice improves speed and accuracy over time.'];
+let target=samples[Math.floor(Math.random()*samples.length)], left=60, t=null;
+const p=document.getElementById('prompt'),inp=document.getElementById('inputTxt'); p.textContent=target;
+function calc(){ const typed=inp.value.trim().split(/s+/).filter(Boolean).length; const wpm=Math.round(typed*(60/(60-left||1))); const chars=inp.value.length; const match=[...inp.value].filter((c,i)=>c===target[i]).length; const acc=chars?Math.round(match/chars*100):0; document.getElementById('score').innerHTML='<p><strong>WPM:</strong> '+wpm+'</p><p><strong>Accuracy:</strong> '+acc+'%</p>'; }
+function start(){ clearInterval(t); left=60; document.getElementById('timer').textContent=left; inp.value=''; inp.disabled=false; inp.focus(); t=setInterval(()=>{ left--; document.getElementById('timer').textContent=left; calc(); if(left<=0){clearInterval(t); inp.disabled=true;} },1000);} 
+inp.addEventListener('input',calc); document.getElementById('start').onclick=start; start();</script>
+</body>
+</html>
