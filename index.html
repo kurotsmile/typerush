@@ -1,69 +1,1038 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TypeRush | Typing Speed Test</title><meta name="description" content="Test your typing speed, accuracy, and words per minute in real time."><meta name="keywords" content="typing speed test,wpm test,typing accuracy"><meta name="author" content="Tran Thien Thanh"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:title" content="TypeRush - Typing Speed Test"><meta property="og:description" content="Test your typing speed, accuracy, and words per minute in real time."><meta property="og:url" content="https://typerush.web.app"><meta property="og:image" content="https://typerush.web.app/favicon.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="TypeRush - Typing Speed Test"><meta name="twitter:description" content="Test your typing speed, accuracy, and words per minute in real time."><link rel="canonical" href="https://typerush.web.app/"><link rel="icon" type="image/svg+xml" href="favicon.svg"><style>:root{--w:1040px;--r:24px;--font:"Candara","Segoe UI",sans-serif;--bg:linear-gradient(180deg,#fff4f6,#f2f4ff);--card:#fff;--text:#371f33;--muted:#7d6177;--line:#efdce7;--g1:#ff3d67;--g2:#5664ff;--shadow:0 18px 40px rgba(73,41,63,.14)}
-*{box-sizing:border-box}
-body{margin:0;color:var(--text);font-family:var(--font);background:var(--bg)}
-.page{max-width:var(--w);margin:0 auto;padding:24px 16px 36px}
-.tool-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
-label{display:block;margin-bottom:6px;font-weight:700}
-input,select,textarea,button{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
-textarea{min-height:130px;resize:vertical}
-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;background:linear-gradient(125deg,var(--g1),var(--g2));color:#fff;font-weight:700;cursor:pointer}
-button:hover{filter:brightness(1.05)}
-.btn-ic{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
-.grid{display:grid;gap:12px}
-.grid.two{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.output,.panel{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
-canvas,img.preview,svg{max-width:100%;border-radius:12px;border:1px solid var(--line);background:#fff}
-.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.swatch{border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer}
-.swatch div{height:68px}
-.swatch code{display:block;text-align:center;padding:8px;background:#fff}
-.note{color:var(--muted)}
-.site-footer{margin-top:20px;background:#10243a;color:#dce8f8;border:1px solid #1e3e61;border-radius:14px;padding:16px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.site-footer h3{margin:0 0 8px;color:#fff}
-.site-footer p{margin:5px 0;word-break:break-word}
-.site-footer a{color:#92cfff}
-@media (max-width:720px){.page{padding:14px 10px 24px}.tool-shell{padding:14px}}
-.hero{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px}.hero::after{content:'';position:absolute;width:140px;height:140px;border-radius:999px;right:-35px;bottom:-35px;background:linear-gradient(120deg,var(--g1),var(--g2));opacity:.15}</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TypeRush","description":"Test your typing speed, accuracy, and words per minute in real time.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","url":"https://typerush.web.app"}</script></head><body><div class="page"><section class="hero"><h1>Typing Speed Test</h1><p>Test your typing speed, accuracy, and words per minute in real time.</p></section><section class="tool-shell"><div class="panel" id="prompt"></div><label style="margin-top:10px">Type here</label><textarea id="inputTxt"></textarea><div class="grid two" style="margin-top:10px"><button id="start">Start 60s Test</button><div class="output"><strong id="timer">60</strong> sec left</div></div><div id="score" class="output" style="margin-top:10px"></div></section>
-<footer class="site-footer">
-  <div>
-    <h3>Contact</h3>
-    <p>Email: <a href="mailto:tranthienthanh93@gmail.com">tranthienthanh93@gmail.com</a></p>
-    <p>Web: <a href="https://carrotstore.web.app" target="_blank" rel="noopener">carrotstore.web.app</a></p>
-    <p>Phone: <a href="tel:+84978651577">+84978651577</a></p>
-    <p>Tiktok: <a href="https://www.tiktok.com/@kurotsmilethanh" target="_blank" rel="noopener">@kurotsmilethanh</a></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeRush | Modern Typing Practice</title>
+  <meta name="description" content="Practice typing with live WPM, accuracy, streak tracking, difficulty presets, custom text, and local score history.">
+  <meta name="keywords" content="typing speed test,wpm test,typing practice,typing accuracy">
+  <meta name="author" content="Tran Thien Thanh">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TypeRush | Modern Typing Practice">
+  <meta property="og:description" content="A redesigned typing web tool with multiple modes, instant feedback, local score history, and a polished responsive interface.">
+  <meta property="og:url" content="https://typerush.web.app">
+  <meta property="og:image" content="https://typerush.web.app/favicon.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TypeRush | Modern Typing Practice">
+  <meta name="twitter:description" content="A redesigned typing web tool with multiple modes, instant feedback, local score history, and a polished responsive interface.">
+  <link rel="canonical" href="https://typerush.web.app/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="google-site-verification" content="jv-rBXrSE1vKCdBI3TmwRXa0zNd0LO3EFGUj7a6_AJo" />
+  <script>(function(s){s.dataset.zone='10721037',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='10721038',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --bg-strong: #efe4d4;
+      --panel: rgba(255, 251, 245, 0.84);
+      --panel-strong: #fffaf2;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: rgba(31, 41, 55, 0.12);
+      --accent: #c2410c;
+      --accent-2: #0f766e;
+      --accent-3: #164e63;
+      --success: #15803d;
+      --danger: #dc2626;
+      --shadow: 0 18px 60px rgba(59, 42, 24, 0.12);
+      --radius: 28px;
+      --radius-sm: 16px;
+      --mono: "Consolas", "Courier New", monospace;
+      --sans: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    body.dark {
+      --bg: #111827;
+      --bg-strong: #172033;
+      --panel: rgba(17, 24, 39, 0.88);
+      --panel-strong: #1d2739;
+      --text: #f3f4f6;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --accent: #fb923c;
+      --accent-2: #2dd4bf;
+      --accent-3: #7dd3fc;
+      --success: #4ade80;
+      --danger: #f87171;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at top left, rgba(194, 65, 12, 0.16), transparent 28%),
+        radial-gradient(circle at 85% 0%, rgba(15, 118, 110, 0.16), transparent 26%),
+        linear-gradient(180deg, var(--bg), var(--bg-strong));
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 18px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -90px;
+      background: rgba(194, 65, 12, 0.14);
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 180px;
+      left: -70px;
+      bottom: -90px;
+      background: rgba(15, 118, 110, 0.12);
+    }
+
+    .eyebrow,
+    .pill,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      line-height: 0.92;
+      max-width: 10ch;
+    }
+
+    .hero-copy {
+      margin-top: 10px;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .hero-side {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .hero-card,
+    .panel,
+    .stats-card,
+    .footer-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card {
+      padding: 16px;
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-card span {
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .control-block {
+      display: grid;
+      gap: 8px;
+    }
+
+    .control-block label,
+    .section-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    textarea,
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    textarea,
+    select,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-strong);
+      color: var(--text);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    textarea:focus,
+    select:focus,
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    textarea {
+      min-height: 108px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .btn-row,
+    .chips,
+    .quick-stats,
+    .result-grid,
+    .history-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      color: #fff;
+      transition: transform 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--accent), #ea580c);
+    }
+
+    .secondary-btn {
+      background: linear-gradient(135deg, var(--accent-2), #0f766e);
+    }
+
+    .ghost-btn {
+      background: linear-gradient(135deg, var(--accent-3), #2563eb);
+    }
+
+    .toggle-btn {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .chip,
+    .pill {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.32);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .chip.active {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), #ea580c);
+      color: #fff;
+    }
+
+    .typing-zone {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .prompt-shell {
+      position: relative;
+      min-height: 180px;
+      padding: 18px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .prompt-text {
+      font-family: var(--mono);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.9;
+      letter-spacing: 0.01em;
+      word-break: break-word;
+    }
+
+    .char {
+      position: relative;
+      border-radius: 6px;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+
+    .char.current {
+      background: rgba(15, 118, 110, 0.16);
+      box-shadow: inset 0 -2px 0 var(--accent-2);
+    }
+
+    .char.correct {
+      color: var(--success);
+    }
+
+    .char.wrong {
+      color: var(--danger);
+      background: rgba(220, 38, 38, 0.12);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(107, 114, 128, 0.16);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      transition: width 0.18s ease;
+    }
+
+    .typing-input {
+      min-height: 140px;
+      font-family: var(--mono);
+      font-size: 1rem;
+    }
+
+    .quick-stats {
+      justify-content: space-between;
+    }
+
+    .stats-card {
+      flex: 1 1 150px;
+      min-width: 0;
+      padding: 16px;
+    }
+
+    .stats-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .stats-card strong {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .result-grid {
+      margin-top: 14px;
+    }
+
+    .result-item {
+      flex: 1 1 130px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 14px;
+      background: var(--panel-strong);
+    }
+
+    .result-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+
+    .result-item strong {
+      font-size: 1.55rem;
+    }
+
+    .history-list {
+      margin-top: 14px;
+      flex-direction: column;
+    }
+
+    .history-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+    }
+
+    .history-item small,
+    .helper {
+      color: var(--muted);
+    }
+
+    .helper {
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 18px;
+    }
+
+    .footer-card {
+      padding: 18px;
+    }
+
+    .footer-card a {
+      color: var(--accent-3);
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.55s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 14px 10px 28px;
+      }
+
+      .hero,
+      .panel,
+      .footer-card {
+        padding: 16px;
+      }
+
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        max-width: none;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TypeRush",
+      "description": "Practice typing with live WPM, accuracy, streak tracking, difficulty presets, custom text, and local score history.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "url": "https://typerush.web.app"
+    }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <section class="hero fade-in">
+      <div>
+        <div class="eyebrow">Typing practice rebuilt for focus</div>
+        <h1 class="hero-title">Type faster. Miss less. Track progress.</h1>
+        <p class="hero-copy">
+          Switch between quick sprints and deeper practice, load your own text, monitor WPM and accuracy live, and keep a local record of your best sessions.
+        </p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="heroStart" type="button">Start test</button>
+          <button class="toggle-btn" id="themeToggle" type="button">Toggle theme</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-card">
+          <span>Fast setup</span>
+          <strong>15 / 30 / 60 / 120s</strong>
+          <span>Choose short drills or longer focus rounds.</span>
+        </div>
+        <div class="hero-card">
+          <span>Adaptive practice</span>
+          <strong>Easy, Medium, Hard</strong>
+          <span>Switch prompt difficulty or paste custom text for targeted training.</span>
+        </div>
+        <div class="hero-card">
+          <span>Useful feedback</span>
+          <strong>WPM, CPM, streak, errors</strong>
+          <span>See what changed during the test instead of only the final score.</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout fade-in">
+      <section class="panel">
+        <div class="controls">
+          <div class="control-block">
+            <label for="durationSelect">Duration</label>
+            <select id="durationSelect">
+              <option value="15">15 seconds</option>
+              <option value="30">30 seconds</option>
+              <option value="60" selected>60 seconds</option>
+              <option value="120">120 seconds</option>
+            </select>
+          </div>
+          <div class="control-block">
+            <label for="difficultySelect">Difficulty</label>
+            <select id="difficultySelect">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+              <option value="custom">Custom text</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-block">
+          <label for="customText">Custom text</label>
+          <textarea id="customText" placeholder="Paste your own paragraph here. This is used when Difficulty is set to Custom text."></textarea>
+          <p class="helper">Tip: Use custom text to rehearse emails, code snippets, prompts, or domain-specific vocabulary.</p>
+        </div>
+
+        <div class="chips" id="quoteChips" aria-label="Prompt presets"></div>
+
+        <div class="btn-row" style="margin-top: 16px;">
+          <button class="primary-btn" id="startBtn" type="button">Start new test</button>
+          <button class="secondary-btn" id="shuffleBtn" type="button">Shuffle prompt</button>
+          <button class="ghost-btn" id="copyBtn" type="button">Copy prompt</button>
+        </div>
+
+        <div class="typing-zone">
+          <div class="quick-stats">
+            <div class="pill">Time left: <strong id="timer">60</strong>s</div>
+            <div class="pill">Progress: <strong id="progressText">0%</strong></div>
+            <div class="pill">Status: <strong id="statusText">Ready</strong></div>
+          </div>
+
+          <div class="progress-bar" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="prompt-shell">
+            <div class="prompt-text" id="promptText"></div>
+          </div>
+
+          <div class="quick-stats">
+            <div class="stats-card">
+              <span>Live WPM</span>
+              <strong id="liveWpm">0</strong>
+            </div>
+            <div class="stats-card">
+              <span>Accuracy</span>
+              <strong id="liveAccuracy">100%</strong>
+            </div>
+            <div class="stats-card">
+              <span>Current streak</span>
+              <strong id="liveStreak">0</strong>
+            </div>
+            <div class="stats-card">
+              <span>Errors</span>
+              <strong id="liveErrors">0</strong>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <label for="typingInput">Type here</label>
+            <textarea id="typingInput" class="typing-input" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Press Start new test, then begin typing here."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="section-title">Session summary</div>
+          <div class="result-grid">
+            <div class="result-item">
+              <span>Final WPM</span>
+              <strong id="finalWpm">0</strong>
+            </div>
+            <div class="result-item">
+              <span>Accuracy</span>
+              <strong id="finalAccuracy">0%</strong>
+            </div>
+            <div class="result-item">
+              <span>Characters / min</span>
+              <strong id="finalCpm">0</strong>
+            </div>
+            <div class="result-item">
+              <span>Best streak</span>
+              <strong id="bestStreak">0</strong>
+            </div>
+          </div>
+          <p class="helper" id="resultMessage" style="margin-top: 14px;">Run a test to populate results.</p>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">Local history</div>
+          <p class="helper">The latest five sessions are stored in your browser only.</p>
+          <div class="history-list" id="historyList"></div>
+          <div class="btn-row" style="margin-top: 14px;">
+            <button class="toggle-btn" id="clearHistoryBtn" type="button">Clear history</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">Practice notes</div>
+          <p class="helper">Use 15 or 30 seconds for warmups, 60 seconds for balanced measurement, and 120 seconds when you want stamina and consistency data.</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer fade-in">
+      <div class="footer-card">
+        <h3>Contact</h3>
+        <p class="helper">Email: <a href="mailto:tranthienthanh93@gmail.com">tranthienthanh93@gmail.com</a></p>
+        <p class="helper">Web: <a href="https://carrotstore.web.app" target="_blank" rel="noopener">carrotstore.web.app</a></p>
+        <p class="helper">Phone: <a href="tel:+84978651577">+84 978 651 577</a></p>
+        <p class="helper">TikTok: <a href="https://www.tiktok.com/@kurotsmilethanh" target="_blank" rel="noopener">@kurotsmilethanh</a></p>
+      </div>
+      <div class="footer-card">
+        <h3>Support</h3>
+        <p class="helper">PayPal: <a href="https://www.paypal.com/paypalme/kurotsmile" target="_blank" rel="noopener">paypal.me/kurotsmile</a></p>
+        <p class="helper">Ko-fi: <a href="https://ko-fi.com/T6T210E258" target="_blank" rel="noopener">ko-fi.com/T6T210E258</a></p>
+      </div>
+    </footer>
   </div>
-  <div>
-    <h3>Donation</h3>
-    <p>PayPal: <a href="https://www.paypal.com/paypalme/kurotsmile" target="_blank" rel="noopener">https://www.paypal.com/paypalme/kurotsmile</a></p>
-    <p>Buy us a Coffee on Ko-fi: <a href="https://ko-fi.com/T6T210E258" target="_blank" rel="noopener">https://ko-fi.com/T6T210E258</a></p>
-  </div>
-</footer></div><script>const samples=['Fast typing is a practical skill for daily productivity.','Design and code quality both matter when shipping web tools.','Small consistent practice improves speed and accuracy over time.']; let target=samples[Math.floor(Math.random()*samples.length)], left=60, t=null; const p=document.getElementById('prompt'),inp=document.getElementById('inputTxt'); p.textContent=target; function calc(){ const typed=inp.value.trim().split(/s+/).filter(Boolean).length; const wpm=Math.round(typed*(60/(60-left||1))); const chars=inp.value.length; const match=[...inp.value].filter((c,i)=>c===target[i]).length; const acc=chars?Math.round(match/chars*100):0; document.getElementById('score').innerHTML='<p><strong>WPM:</strong> '+wpm+'</p><p><strong>Accuracy:</strong> '+acc+'%</p>'; } function start(){ clearInterval(t); left=60; document.getElementById('timer').textContent=left; inp.value=''; inp.disabled=false; inp.focus(); t=setInterval(()=>{ left--; document.getElementById('timer').textContent=left; calc(); if(left<=0){clearInterval(t); inp.disabled=true;} },1000);} inp.addEventListener('input',calc); document.getElementById('start').onclick=start; start();</script><script>(function(){
-  const icons = {
-    make:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
-    download:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg>',
-    convert:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13"/><path d="M13 3l4 4-4 4"/><path d="M20 17H7"/><path d="M11 13l-4 4 4 4"/></svg>',
-    apply:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>',
-    copy:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><rect x="4" y="4" width="11" height="11" rx="2"/></svg>',
-    random:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M16 21h5v-5"/><path d="M4 4l7 7"/></svg>',
-    start:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
-    scan:'<svg class="btn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>'
-  };
-  const choose = (txt) => {
-    const t = txt.toLowerCase();
-    if (t.includes('download') || t.includes('save')) return icons.download;
-    if (t.includes('convert')) return icons.convert;
-    if (t.includes('apply') || t.includes('enhance') || t.includes('detect')) return icons.apply;
-    if (t.includes('copy') || t.includes('extract')) return icons.copy;
-    if (t.includes('random')) return icons.random;
-    if (t.includes('start')) return icons.start;
-    if (t.includes('scan')) return icons.scan;
-    if (t.includes('generate') || t.includes('create') || t.includes('build') || t.includes('update')) return icons.make;
-    return icons.make;
-  };
-  document.querySelectorAll('button').forEach((btn) => {
-    const text = btn.textContent.trim();
-    if (!text || btn.dataset.iconized === '1') return;
-    btn.innerHTML = choose(text) + '<span>' + text + '</span>';
-    btn.dataset.iconized = '1';
-  });
-})();</script></body></html>
+
+  <script>
+    const promptBank = {
+      easy: [
+        "Typing every day for a few minutes can improve speed without making practice feel heavy.",
+        "Clear rhythm matters more than rushing because accuracy creates speed over time.",
+        "Short warmups help your hands settle before you chase a higher words per minute score."
+      ],
+      medium: [
+        "Designing useful tools means balancing speed, clarity, and the small details that make a workflow feel smooth.",
+        "A strong typing habit is built through repetition, posture, and deliberate corrections after each mistake.",
+        "Practicing on realistic paragraphs is often better than random words because context exposes weak patterns."
+      ],
+      hard: [
+        "Production-ready interfaces should feel deliberate: strong hierarchy, responsive behavior, readable contrast, and feedback that explains state changes instantly.",
+        "A skilled typist improves not only raw speed but also consistency under pressure, error recovery, punctuation handling, and long-form concentration.",
+        "When performance matters, disciplined iteration beats guesswork because measured changes reveal whether the system actually became faster."
+      ]
+    };
+
+    const historyKey = "typerush-history-v2";
+    const themeKey = "typerush-theme";
+    const appState = {
+      prompt: "",
+      duration: 60,
+      timeLeft: 60,
+      running: false,
+      timerId: null,
+      startedAt: null,
+      bestStreak: 0,
+      activePreset: 0
+    };
+
+    const elements = {
+      durationSelect: document.getElementById("durationSelect"),
+      difficultySelect: document.getElementById("difficultySelect"),
+      customText: document.getElementById("customText"),
+      quoteChips: document.getElementById("quoteChips"),
+      startBtn: document.getElementById("startBtn"),
+      heroStart: document.getElementById("heroStart"),
+      shuffleBtn: document.getElementById("shuffleBtn"),
+      copyBtn: document.getElementById("copyBtn"),
+      typingInput: document.getElementById("typingInput"),
+      promptText: document.getElementById("promptText"),
+      timer: document.getElementById("timer"),
+      progressText: document.getElementById("progressText"),
+      progressFill: document.getElementById("progressFill"),
+      statusText: document.getElementById("statusText"),
+      liveWpm: document.getElementById("liveWpm"),
+      liveAccuracy: document.getElementById("liveAccuracy"),
+      liveStreak: document.getElementById("liveStreak"),
+      liveErrors: document.getElementById("liveErrors"),
+      finalWpm: document.getElementById("finalWpm"),
+      finalAccuracy: document.getElementById("finalAccuracy"),
+      finalCpm: document.getElementById("finalCpm"),
+      bestStreak: document.getElementById("bestStreak"),
+      resultMessage: document.getElementById("resultMessage"),
+      historyList: document.getElementById("historyList"),
+      clearHistoryBtn: document.getElementById("clearHistoryBtn"),
+      themeToggle: document.getElementById("themeToggle")
+    };
+
+    function getSelectedPool() {
+      const difficulty = elements.difficultySelect.value;
+      if (difficulty === "custom") {
+        const custom = elements.customText.value.trim();
+        return custom ? [custom] : [promptBank.medium[0]];
+      }
+      return promptBank[difficulty];
+    }
+
+    function escapeHtml(char) {
+      if (char === "&") return "&amp;";
+      if (char === "<") return "&lt;";
+      if (char === ">") return "&gt;";
+      if (char === '"') return "&quot;";
+      return char === " " ? "&nbsp;" : char;
+    }
+
+    function setPrompt(index) {
+      const pool = getSelectedPool();
+      const safeIndex = Number.isInteger(index) ? index % pool.length : Math.floor(Math.random() * pool.length);
+      appState.prompt = pool[safeIndex];
+      appState.activePreset = safeIndex;
+      renderPrompt("");
+      renderPresetChips();
+    }
+
+    function renderPresetChips() {
+      const pool = getSelectedPool();
+      elements.quoteChips.innerHTML = "";
+      pool.forEach(function (_, index) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "chip" + (index === appState.activePreset ? " active" : "");
+        button.textContent = "Prompt " + (index + 1);
+        button.addEventListener("click", function () {
+          setPrompt(index);
+          resetTestUI();
+        });
+        elements.quoteChips.appendChild(button);
+      });
+    }
+
+    function renderPrompt(inputValue) {
+      const typed = inputValue || "";
+      const chars = appState.prompt.split("");
+      const markup = chars.map(function (char, index) {
+        let className = "char";
+        if (index < typed.length) {
+          className += typed[index] === char ? " correct" : " wrong";
+        } else if (index === typed.length) {
+          className += " current";
+        }
+        return '<span class="' + className + '">' + escapeHtml(char) + "</span>";
+      }).join("");
+      elements.promptText.innerHTML = markup;
+    }
+
+    function computeStats(text) {
+      const typed = text;
+      let matches = 0;
+      let currentStreak = 0;
+      let bestStreak = 0;
+      for (let index = 0; index < typed.length; index += 1) {
+        if (typed[index] === appState.prompt[index]) {
+          matches += 1;
+          currentStreak += 1;
+          if (currentStreak > bestStreak) {
+            bestStreak = currentStreak;
+          }
+        } else {
+          currentStreak = 0;
+        }
+      }
+
+      const elapsed = appState.running && appState.startedAt
+        ? Math.max((Date.now() - appState.startedAt) / 1000, 1)
+        : Math.max(appState.duration - appState.timeLeft, 1);
+      const grossWpm = Math.round((typed.length / 5) * (60 / elapsed));
+      const netWpm = Math.max(Math.round((matches / 5) * (60 / elapsed)), 0);
+      const accuracy = typed.length ? Math.round((matches / typed.length) * 100) : 100;
+      const errors = typed.length - matches;
+      const cpm = Math.round(matches * (60 / elapsed));
+      return {
+        grossWpm,
+        netWpm,
+        accuracy,
+        errors,
+        cpm,
+        currentStreak,
+        bestStreak
+      };
+    }
+
+    function updateLiveMetrics() {
+      const stats = computeStats(elements.typingInput.value);
+      appState.bestStreak = Math.max(appState.bestStreak, stats.bestStreak);
+      elements.liveWpm.textContent = String(stats.netWpm);
+      elements.liveAccuracy.textContent = stats.accuracy + "%";
+      elements.liveStreak.textContent = String(stats.currentStreak);
+      elements.liveErrors.textContent = String(stats.errors);
+      const progress = appState.prompt.length
+        ? Math.min(Math.round((elements.typingInput.value.length / appState.prompt.length) * 100), 100)
+        : 0;
+      elements.progressText.textContent = progress + "%";
+      elements.progressFill.style.width = progress + "%";
+      renderPrompt(elements.typingInput.value);
+
+      if (elements.typingInput.value === appState.prompt && appState.running) {
+        finishTest("Prompt completed early.");
+      }
+    }
+
+    function resetTestUI() {
+      clearInterval(appState.timerId);
+      appState.running = false;
+      appState.startedAt = null;
+      appState.bestStreak = 0;
+      appState.duration = Number(elements.durationSelect.value);
+      appState.timeLeft = appState.duration;
+      elements.timer.textContent = String(appState.duration);
+      elements.progressText.textContent = "0%";
+      elements.progressFill.style.width = "0%";
+      elements.statusText.textContent = "Ready";
+      elements.typingInput.value = "";
+      elements.typingInput.disabled = false;
+      elements.liveWpm.textContent = "0";
+      elements.liveAccuracy.textContent = "100%";
+      elements.liveStreak.textContent = "0";
+      elements.liveErrors.textContent = "0";
+      renderPrompt("");
+    }
+
+    function startTest(preserveValue) {
+      appState.duration = Number(elements.durationSelect.value);
+      appState.timeLeft = appState.duration;
+      appState.running = true;
+      appState.startedAt = Date.now();
+      appState.bestStreak = 0;
+      if (!preserveValue) {
+        elements.typingInput.value = "";
+      }
+      elements.typingInput.disabled = false;
+      elements.typingInput.focus();
+      elements.statusText.textContent = "Running";
+      elements.timer.textContent = String(appState.timeLeft);
+      elements.resultMessage.textContent = "Test in progress.";
+      updateLiveMetrics();
+      clearInterval(appState.timerId);
+      appState.timerId = setInterval(function () {
+        appState.timeLeft -= 1;
+        elements.timer.textContent = String(Math.max(appState.timeLeft, 0));
+        if (appState.timeLeft <= 0) {
+          finishTest("Time is up.");
+        }
+      }, 1000);
+    }
+
+    function saveHistory(entry) {
+      const existing = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      existing.unshift(entry);
+      localStorage.setItem(historyKey, JSON.stringify(existing.slice(0, 5)));
+      renderHistory();
+    }
+
+    function renderHistory() {
+      const history = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      elements.historyList.innerHTML = "";
+      if (!history.length) {
+        elements.historyList.innerHTML = '<div class="history-item"><div><strong>No sessions yet</strong><br><small>Start a test to build your local history.</small></div><small>0 items</small></div>';
+        return;
+      }
+
+      history.forEach(function (item) {
+        const row = document.createElement("div");
+        row.className = "history-item";
+        row.innerHTML =
+          "<div><strong>" + item.wpm + " WPM</strong><br><small>" +
+          item.accuracy + "% accuracy, " + item.duration + "s, " + item.difficulty +
+          "</small></div><small>" + item.date + "</small>";
+        elements.historyList.appendChild(row);
+      });
+    }
+
+    function finishTest(reason) {
+      clearInterval(appState.timerId);
+      appState.running = false;
+      elements.typingInput.disabled = true;
+      elements.statusText.textContent = "Complete";
+      const stats = computeStats(elements.typingInput.value);
+      elements.finalWpm.textContent = String(stats.netWpm);
+      elements.finalAccuracy.textContent = stats.accuracy + "%";
+      elements.finalCpm.textContent = String(stats.cpm);
+      elements.bestStreak.textContent = String(appState.bestStreak);
+      elements.resultMessage.textContent = reason + " Gross WPM: " + stats.grossWpm + ". Errors: " + stats.errors + ".";
+
+      saveHistory({
+        wpm: stats.netWpm,
+        accuracy: stats.accuracy,
+        duration: appState.duration,
+        difficulty: elements.difficultySelect.value,
+        date: new Date().toLocaleString()
+      });
+    }
+
+    function shufflePrompt() {
+      setPrompt();
+      resetTestUI();
+    }
+
+    function copyPrompt() {
+      navigator.clipboard.writeText(appState.prompt).then(function () {
+        elements.statusText.textContent = "Prompt copied";
+      }).catch(function () {
+        elements.statusText.textContent = "Copy failed";
+      });
+    }
+
+    function applyTheme() {
+      const saved = localStorage.getItem(themeKey);
+      if (saved === "dark") {
+        document.body.classList.add("dark");
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem(themeKey, document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    elements.durationSelect.addEventListener("change", resetTestUI);
+    elements.difficultySelect.addEventListener("change", function () {
+      setPrompt(0);
+      resetTestUI();
+    });
+    elements.customText.addEventListener("input", function () {
+      if (elements.difficultySelect.value === "custom") {
+        setPrompt(0);
+        resetTestUI();
+      }
+    });
+    elements.typingInput.addEventListener("input", function () {
+      if (!appState.running && elements.typingInput.value.length === 1) {
+        startTest(true);
+      }
+      updateLiveMetrics();
+    });
+    elements.startBtn.addEventListener("click", startTest);
+    elements.heroStart.addEventListener("click", function () {
+      window.scrollTo({ top: 320, behavior: "smooth" });
+      setTimeout(startTest, 180);
+    });
+    elements.shuffleBtn.addEventListener("click", shufflePrompt);
+    elements.copyBtn.addEventListener("click", copyPrompt);
+    elements.clearHistoryBtn.addEventListener("click", function () {
+      localStorage.removeItem(historyKey);
+      renderHistory();
+    });
+    elements.themeToggle.addEventListener("click", toggleTheme);
+
+    applyTheme();
+    setPrompt(0);
+    resetTestUI();
+    renderHistory();
+  </script>
+</body>
+</html>
